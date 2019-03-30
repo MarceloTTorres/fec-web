@@ -13,7 +13,7 @@ class CreateMemberProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_member_projects', function (Blueprint $table) {
+        Schema::create('member_projects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('projects_id');
             $table->unsignedBigInteger('users_id');

@@ -13,7 +13,7 @@ class CreateKnowledgeareasTable extends Migration
      */
     public function up()
     {
-        Schema::create('_knowledgeareas', function (Blueprint $table) {
+        Schema::create('knowledgeareas', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->string('area');
             $table->integer('master_area')->nullable();

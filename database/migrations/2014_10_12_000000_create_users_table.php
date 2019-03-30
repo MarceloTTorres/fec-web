@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email', 191)->unique();
+            $table->string('ra');
+            $table->string('curse_id ');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -26,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softdeletes();
         });
+
     }
 
     /**

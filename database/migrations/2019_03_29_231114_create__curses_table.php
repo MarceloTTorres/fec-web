@@ -13,7 +13,7 @@ class CreateCursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('_curses', function (Blueprint $table) {
+        Schema::create('curses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('code');
             $table->string('name');
