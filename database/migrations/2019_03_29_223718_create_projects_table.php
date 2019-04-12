@@ -40,9 +40,6 @@ class CreateProjectsTable extends Migration
 
             $table->foreign('area')->references('id')->on('knowledgeareas');
             $table->foreign('owner')->references('id')->on('users');
-
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
