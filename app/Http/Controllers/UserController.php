@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\Rule;
 use Carbon\Carbon;
+
+const MSG_ERRO_NOME = 'Nome é obrigatório.'; 
+const MSG_ERRO_EMAIL = 'E-mail inválido.';
 
 class UserController extends Controller
 {
@@ -11,13 +16,19 @@ class UserController extends Controller
         $user = User::find($request->id);  
         $user->fill($request->all());
 
-        $rules['email'] = ['email|required', 'regex:/^[\w.]+@[(uniara)]+\.[(edu)]+\.([(br)]+)?$/i'];
+        $rules = array(
+          'name' => 'required',
+          'email' => 'required|regex:/^[\w.]+@[(uniara)]+\.[(edu)]+\.([(br)]+)?$/i'
+        );
 
-        $request->validate([
-          'name' => 'required'
-      ]);
+        
+        $validator = Validator::make($request->all(), $rules); 
 
-        //'^[a-z0-9.]+@[(uniara)]+\.[(edu)]+\.([(br)]+)?$/i'
+        if ($validator->fails()) {
+          return Redirect::back()->withErrors($validator);
+        }else{
+          $user->save();;
+        }
         
       
 
@@ -32,8 +43,8 @@ class UserController extends Controller
 
         //$campos->imagem->move(public_path('C:\Images'), $nome);
          
-         $user->save();
+         
 
-        return response()->json($request);
+        //return response()->json($request);
     }
 }
