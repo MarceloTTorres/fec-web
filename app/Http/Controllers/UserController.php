@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
@@ -9,15 +8,22 @@ use Carbon\Carbon;
 class UserController extends Controller
 {
     public function AlterUser(Request $request){
-        $campos = $request->all();
-        $user = User::find($campos->id);
-        $user->fill($campos);
+        $user = User::find($request->id);  
+        $user->fill($request->all());
 
-        // $nome = Carbon::now()->format('Y_m_d_h_i_s') . 
-        //     '.' .$campos->file('imagem')->getClientOriginalExtensions();
+        //verifica se tem foto
 
-        // $campos->imagem->move(public_path('images\\' . $campos->id), $nome);
+        //se tiver, apaga a foto atual do disco -- da update no nome da nova foto
+
+        //se nao tiver foto, nao faz nada
+
+        //$nome = Carbon::now()->format('Y_m_d_h_i_s') . 
+          //   '.' .$request->file('imagem' . $campos->id)->getClientOriginalExtensions();
+
+        //$campos->imagem->move(public_path('C:\Images'), $nome);
          
-        $user->save();
+         $user->save();
+
+        return response()->json($request);
     }
 }
