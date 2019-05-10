@@ -13,14 +13,23 @@ class CreateKnowledgeareasTable extends Migration
      */
     public function up()
     {
+
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('knowledgeareas', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->string('area');
-            $table->integer('master_area')->nullable();
+            $table->integer('master_area', false, true)->nullable();
+            $table->primary('id');
+            $table->index("master_area");
+            
+            $table->foreign('master_area')->references('id')->on('knowledgeareas'); 
 
             $table->timestamps();
             $table->softdeletes();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -30,6 +39,6 @@ class CreateKnowledgeareasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_knowledgeareas');
+        Schema::dropIfExists('knowledgeareas');
     }
 }

@@ -24,6 +24,8 @@ class CreateMemberProjectsTable extends Migration
             $table->foreign('projects_id')->references('id')->on('projects');
             $table->foreign('users_id')->references('id')->on('users');
 
+            
+
         });
     }
 
@@ -34,6 +36,6 @@ class CreateMemberProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_member_projects');
+        Schema::dropIfExists('member_projects');
     }
 }
