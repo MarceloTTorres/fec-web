@@ -66,6 +66,11 @@
                                     </form>
                                 </div>
                             </li>
+                                <li class="nav-item dropdown">
+                                    <a id="idListarUsuarios" class="nav-link " href="{{ route('listarUsuarios')}}">
+                                        Usuarios
+                                    </a>
+                                </li>
                         @endguest
                     </ul>
                 </div>

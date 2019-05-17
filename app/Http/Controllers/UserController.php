@@ -47,4 +47,10 @@ class UserController extends Controller
 
         //return response()->json($request);
     }
+
+    public function ListarUsuario()
+    {
+        $usuarios = User::all()->sortBy('name');
+        return view('listarUsuario')->withUsers($usuarios);
+    }
 }
