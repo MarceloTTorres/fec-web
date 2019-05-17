@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -24,6 +24,40 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="ra" class="col-md-4 col-form-label text-md-right">{{ __('Register of Student') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="ra" type="text" class="form-control{{ $errors->has('ra') ? ' is-invalid' : '' }}" name="ra" value="{{ old('ra') }}" required autofocus>
+
+                                @if ($errors->has('ra'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('ra') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="courses" class="col-md-4 col-form-label text-md-right">{{ __('Courses') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="courses"  name="courses" required autofocus>
+                                    <option value=""></option> 
+                                    @foreach (\App\course::all() as $course) 
+                                    <!--->sort('name')-->
+                                        <option value="{{$course->id}}"> {{$course->name}} </option> 
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('courses'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('courses') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>                        
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
