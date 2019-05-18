@@ -28,11 +28,7 @@ class DatabaseSeeder extends Seeder
             echo $e->getMessage();
         }
 
-        // $this->createUsers();
-        // $this->createMemberProjects();
-        // $this->createProjects();
-        //$this->createknowledgeareas();
-        // $this->createPasswordResets();
+        $this->createCourses();
         
     }
 
@@ -59,6 +55,15 @@ class DatabaseSeeder extends Seeder
         return $data;
     }
 
+    private function createCourses(){
+        $max = rand(10, 50);
+        for($i=0; $i < $max; $i++):
+            DB::table('courses')->insert(
+                ['code' => $i, 'name' => 'NOME'.$i, 'area' => 'DEGREE']
+            );
+        endfor;
+    }
+
     private function createUsers(){
         $max = rand(100, 300);
         for($i=0; $i < $max; $i++):
@@ -76,20 +81,6 @@ class DatabaseSeeder extends Seeder
         endfor;
     }
 
-    private function createMemberProjects(){
-        
-    }
 
-    private function createProjects(){
-        
-    }
-
-    private function createknowledgeareas(){
-        
-    }
-
-    private function createPasswordResets(){
-        
-    }
 
 }
