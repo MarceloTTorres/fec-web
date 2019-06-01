@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
+use \Crypt;
 
 const MSG_ERRO_NOME = 'Nome é obrigatório.'; 
 const MSG_ERRO_EMAIL = 'E-mail inválido.';
@@ -13,7 +15,7 @@ const MSG_ERRO_EMAIL = 'E-mail inválido.';
 class UserController extends Controller
 {
     public function AlterUser(Request $request){
-        $user = User::find($request->id);  
+        $user = User::find( Crypt::decrypt($request->id) );  
         $user->fill($request->all());
 
         $rules = array(
@@ -24,11 +26,13 @@ class UserController extends Controller
         
         $validator = Validator::make($request->all(), $rules); 
 
-        if ($validator->fails()) {
-          return Redirect::back()->withErrors($validator);
-        }else{
-          $user->save();;
-        }
+        // if ($validator->fails()) {
+        //   return redirect::back()->withErrors($validator);
+        // }else{
+          $user->save();
+
+          return view('home')->with('status', 'ok');
+        // }
         
       
 
@@ -52,5 +56,11 @@ class UserController extends Controller
     {
         $usuarios = User::all()->sortBy('name');
         return view('listarUsuario')->withUsers($usuarios);
+    }
+
+    public function EditarUsuario(Request $request)
+    {
+        $usuario = User::find($request->id);
+        return view('editarUsuario')->withUser($usuario);
     }
 }
