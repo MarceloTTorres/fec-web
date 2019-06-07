@@ -14,6 +14,10 @@ return [
     */
 
     'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'uploads' => [
+        'driver' => 'local',
+        'root' => storage_path().'/files/uploads',
+    ],
 
     /*
     |--------------------------------------------------------------------------
