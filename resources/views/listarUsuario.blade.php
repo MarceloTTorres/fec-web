@@ -43,13 +43,7 @@
                             <div>
                                 <a id="idEditarUsuario" style="padding-right:10px" href="{{ route('editarUsuario', ['id' => $usuario->id ]) }}">
                                     <i class="fa fa-pencil fa-2x"></i>
-                                    
                                 </a>
-                                <a id="idEditarUsuario"  href="{{ route('editarUsuario', ['id' => $usuario->id ]) }}">
-                                    <i class="fa fa-trash fa-2x"></i>
-                                </a>
-                                
-                                
                              </div>
                         </div>
                         
