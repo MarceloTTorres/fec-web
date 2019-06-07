@@ -66,6 +66,13 @@
                                     </form>
                                 </div>
                             </li>
+                                @if(Auth::user()->level == 0)
+                                <li class="nav-item dropdown">
+                                    <a id="idListarUsuarios" class="nav-link " href="{{ route('listarUsuarios')}}">
+                                        Usuarios
+                                    </a>
+                                </li>
+                                @endif
                         @endguest
                     </ul>
                 </div>
