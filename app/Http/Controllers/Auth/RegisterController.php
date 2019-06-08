@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class RegisterController extends Controller
 {
@@ -38,9 +39,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        //var_dump($data['email'] . "." . $data['photo']->getClientOriginalExtension());
+        //exit();
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[\w]+@[(uniara)]+\.[(edu)]+\.([(br)]+)?$/i'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[\w]+@(uniara)+\.(edu)+\.((br)+)?$/i'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'ra' => ['required', 'string', 'min:8', 'max:8', 'unique:users'],
             'course_id' => ['required', 'numeric', 'exists:courses,id']
@@ -55,6 +58,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $data['minhafoto'] = $data['email'] . "." . $data['photo']->getClientOriginalExtension();
+        $image  = Image::make($data['photo'])->crop(300, 300);
+        $image ->save('public/images/users/' . $data['minhafoto']);
+
         return User::create([
             'name' => $data['name'],
             'ra' => $data['ra'],
@@ -62,7 +69,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'ra' => $data['ra'],
             'password' => Hash::make($data['password']),
-            'course_id' => $data['course_id']
+            'course_id' => $data['course_id'],
+            'photo' => $data['minhafoto']
         ]);
     }
 }

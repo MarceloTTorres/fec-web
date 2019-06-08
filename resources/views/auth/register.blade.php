@@ -99,11 +99,11 @@
                             </div>
                             <div class="col md-10">
                                 <div class="col-md-10 col-md-offset-1 col-lg-12 col-lg-offset-1">
-                                    <div class="row col-md-10 col-md-offset-1 col-lg-offset-1 col-lg-11 d-flex justify-content-center">
+                                    <div class="row col-md-10 col-md-offset-1 col-lg-offset-1 col-lg-11 d-flex justify-content-center">                               
                                         <h4>Imagem de perfil</h4>
                                         <img src="/images/avatar/profile_default.png" class="mt-2" style="width:150px; height:150px; float: left; border-radius:50%; margin-right:25px;">
                                         <label class="btn btn-link">Selecine a imagem de perfil
-                                            <input type="file" id="image" name="image" hidden />
+                                            <input type='file' id="photo" name="photo" accept="image/*" />
                                         </label>
                                     </div>
                                 </div>
