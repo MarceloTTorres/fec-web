@@ -19,15 +19,7 @@ class DatabaseSeeder extends Seeder
         // DB::table('password_resets')->truncate();
         // DB::table('users')->truncate();
 
-        $csvFile = getcwd().'/database/seeds/cargaKnowledgeareas.csv';
-        $areas = $this->csv_to_array($csvFile, ';');
-        //var_dump($areas[0]);
-        try{
-            DB::table('knowledgeareas')->insert($areas);
-        }catch (\Exception $e) {
-            echo $e->getMessage();
-        }
-
+        $this->createKnowledgeareass();
         $this->createCourses();
         
     }
@@ -55,6 +47,29 @@ class DatabaseSeeder extends Seeder
         return $data;
     }
 
+    private function createKnowledgeareass(){
+        $csvFile = getcwd().'/database/seeds/cargaKnowledgeareas.csv';
+        $areas = $this->csv_to_array($csvFile, ';');
+        //var_dump($areas[0]);
+        try{
+            DB::table('knowledgeareas')->insert($areas);
+        }catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    private function createCourses(){
+        $csvFile = getcwd().'/database/seeds/cargaCourses.csv';
+        $cursos = $this->csv_to_array($csvFile, ';');
+        //var_dump($cursos[0]);
+        try{
+            DB::table('courses')->insert($cursos);
+        }catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /*
     private function createCourses(){
         $max = rand(10, 50);
         for($i=0; $i < $max; $i++):
@@ -63,6 +78,7 @@ class DatabaseSeeder extends Seeder
             );
         endfor;
     }
+    */
 
     private function createUsers(){
         $max = rand(100, 300);
