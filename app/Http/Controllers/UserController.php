@@ -18,22 +18,24 @@ class UserController extends Controller
         $user = User::find( Crypt::decrypt($request->id) );  
         $user->fill($request->all());
 
+
+
+
+  
+        
         $rules = array(
           'name' => 'required',
-          'email' => 'required|regex:/^[\w.]+@[(uniara)]+\.[(edu)]+\.([(br)]+)?$/i'
+          'email' => 'required|regex:/^[\w.]+@(uniara)+\.(edu)+\.((br)+)?$/i'
         );
-
         
         $validator = Validator::make($request->all(), $rules); 
 
-        // if ($validator->fails()) {
-        //   return redirect::back()->withErrors($validator);
-        // }else{
+        if ($validator->fails()) {
+          return redirect::back()->withErrors($validator);
+        }else{
           $user->save();
-
           return view('home')->with('status', 'ok');
-        // }
-        
+        }
       
 
         //verifica se tem foto

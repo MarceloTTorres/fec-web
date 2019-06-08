@@ -8,18 +8,29 @@
              <form action="{{ route('AlterUser', ['id'=> Crypt::encrypt($user->id) ])}}" method="post">
              @csrf
              @method('PUT')
-                  <div class="form-group col-md-4">
-                    <label>Nome</label>
-                    <input class="form-control" value="{{$user->name}}"/>
-
-                    <label>Email</label>
-                    <input class="form-control" value="{{$user->email}}"/>
-
-                    <label>Level</label>
-                    <input class="form-control" value="{{$user->level}}"/>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                        <label>Nome</label>
+                        <input class="form-control" name="name" value="{{$user->name}}"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Email</label>
+                        <input  class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$user->email}}"/>
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-md-6">
+                        <label>Level</label>
+                        <input class="form-control" name="level" value="{{$user->level}}"/>
+                    </div>
                     <br>
-                    <input class="btn btn-primary" type="submit" value="Salvar"/>
-                    <a class="btn btn-danger" href="{{ route('listarUsuarios')}}">Cancelar</a>
+                    <div class="col-md-6">
+                        <input class="btn btn-primary" type="submit" value="Salvar"/>
+                        <a class="btn btn-danger" href="{{ route('listarUsuarios')}}">Cancelar</a>
+                    </div>
                 </div>
              </form>
             </div>
