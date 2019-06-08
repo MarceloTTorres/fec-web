@@ -30,13 +30,13 @@
                             {{$usuario->email}}
                             </div>
                             <div class="col-sm-3">
-                            @if($usuario->level == 0)
+                            @if($usuario->type == 0)
                                 Administrador
-                            @elseif($usuario->level == 10)
+                            @elseif($usuario->type == 10)
                                 Proprietário
-                            @elseif($usuario->level == 20)
+                            @elseif($usuario->type == 20)
                                 Aluno
-                            @elseif($usuario->level == 99)
+                            @elseif($usuario->type == 99)
                                 Usuario Externo
                             @endif
                             </div>

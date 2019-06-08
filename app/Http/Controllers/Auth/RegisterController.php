@@ -47,6 +47,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -60,9 +61,7 @@ class RegisterController extends Controller
             'ra' => $data['ra'],
             'course_id' => $data['course_id'],
             'email' => $data['email'],
-            'ra' => $data['ra'],
-            'password' => Hash::make($data['password']),
-            'course_id' => $data['course_id']
+            'password' => Hash::make($data['password'])
         ]);
     }
 }
