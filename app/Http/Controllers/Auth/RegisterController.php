@@ -59,9 +59,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $data['minhafoto'] = $data['email'] . "." . $data['photo']->getClientOriginalExtension();
-        $image  = Image::make($data['photo'])->crop(300, 300);
-        $image ->save('public/images/users/' . $data['minhafoto']);
+        $photo = $data['photo'];
+        $filename = $data['email'] . "." . $data['photo']->getClientOriginalExtension();
+        $path  = public_path('images/users/'.$filename);
+        //$data['minhafoto'] = $data['email'] . "." . $data['photo']->getClientOriginalExtension();
+        Image::make($photo->getRealPath())->crop(300, 300)->save($path);
+        //$image ->save(url('/').'/images/users/' . $data['minhafoto']);
 
         return User::create([
             'name' => $data['name'],
@@ -69,7 +72,7 @@ class RegisterController extends Controller
             'course_id' => $data['course_id'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'photo' => $data['minhafoto']
+            'photo' => $filename
         ]);
     }
 }
