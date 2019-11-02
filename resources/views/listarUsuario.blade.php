@@ -30,7 +30,7 @@
                             {{$usuario->email}}
                             </div>
                             <div class="col-sm-3">
-                            @if($usuario->type == 0)
+                            @if($usuario->type == 5)
                                 Administrador
                             @elseif($usuario->type == 10)
                                 Proprietário
@@ -43,6 +43,9 @@
                             <div>
                                 <a id="idEditarUsuario" style="padding-right:10px" href="{{ route('editarUsuario', ['id' => $usuario->id ]) }}">
                                     <i class="fa fa-pencil fa-2x"></i>
+                                </a>
+                                <a id="idConsultarUsuario" style="padding-right:10px" href="{{ route('consultarUsuario', ['id' => $usuario->id ]) }}">
+                                    <i class="fa fa-eye fa-2x"></i>
                                 </a>
                              </div>
                         </div>

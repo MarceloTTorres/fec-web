@@ -15,6 +15,8 @@ Route::get('/Users', 'UserController@ListarUsuario')->name('listarUsuarios');
 
 Route::get('/EditarUsuario/{id}', 'UserController@EditarUsuario')->name('editarUsuario');
 
+Route::get('/ConsultarUsuario/{id}', 'UserController@ConsultarUsuario')->name('consultarUsuario');
+
 Route::put('/AlterUser', 'UserController@AlterUser')->name('AlterUser');
 
 

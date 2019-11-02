@@ -11,7 +11,7 @@
                   <div class="form-group">
                     <div class="col-md-12">
                         <label>Nome</label>
-                        <input class="form-control" name="name" value="{{$user->name}}"/>
+                        <input class="form-control" name="name" value="{{$user->name}}" readonly/>
                     </div>
                     <div class="col-md-12">
                         <label>Email</label>
@@ -24,12 +24,11 @@
                     </div>
                     <div class="col-md-6">
                         <label>Level</label>
-                        <input class="form-control" name="type" value="{{$user->type}}"/>
+                        <input class="form-control" name="type" value="{{$user->type}}" readonly/>
                     </div>
                     <br>
                     <div class="col-md-6">
-                        <input class="btn btn-primary" type="submit" value="Salvar"/>
-                        <a class="btn btn-danger" href="{{ route('listarUsuarios')}}">Cancelar</a>
+                        <a class="btn btn-danger" href="{{ route('listarUsuarios')}}">Voltar</a>
                     </div>
                 </div>
              </form>

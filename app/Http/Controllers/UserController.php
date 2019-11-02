@@ -18,11 +18,6 @@ class UserController extends Controller
         $user = User::find( Crypt::decrypt($request->id) );  
         $user->fill($request->all());
 
-
-
-
-  
-        
         $rules = array(
           'name' => 'required',
           'email' => 'required|regex:/^[\w.]+@(uniara)+\.(edu)+\.((br)+)?$/i'
@@ -54,15 +49,21 @@ class UserController extends Controller
         //return response()->json($request);
     }
 
-    public function ListarUsuario()
+    public function ListarUsuario(Request $request)
     {
-        $usuarios = User::all()->sortBy('name');
-        return view('listarUsuario')->withUsers($usuarios);
+      $usuarios = User::all()->sortBy('name');
+      return view('listarUsuario')->withUsers($usuarios);
     }
 
     public function EditarUsuario(Request $request)
     {
         $usuario = User::find($request->id);
         return view('editarUsuario')->withUser($usuario);
+    }
+
+    public function ConsultarUsuario(Request $request)
+    {
+        $usuario = User::find($request->id);
+        return view('consultarUsuario')->withUser($usuario);
     }
 }

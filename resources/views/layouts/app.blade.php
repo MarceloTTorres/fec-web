@@ -66,7 +66,7 @@
                                     </form>
                                 </div>
                             </li>
-                                @if(Auth::user()->level == 0)
+                                @if(Auth::user()->type == 5)
                                 <li class="nav-item dropdown">
                                     <a id="idListarUsuarios" class="nav-link " href="{{ route('listarUsuarios')}}">
                                         Usuarios
